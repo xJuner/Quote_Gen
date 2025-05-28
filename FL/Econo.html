@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./Econo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Cotizaciones</title>
+    <script src="./Econo.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quote Gen RedK 2.1</h1>
+        <h2>Florida</h2>
+
+    </div>
+    
+       <img class="bandera" src="us.png" alt="Bandera de Estados Unidos" >
+
+        <button type="button" id="cambiarCostaRica" onclick="window.location.href='https://jvner.com/EC/Prod/CR/Econo.html'">Cambiar a CR</button>
+        <button type="button" id="cambiarafiliado" onclick="window.location.href='https://jvner.com/EC/Prod/QuoteGen/Afi.html'">Cambiar a Externos</button>
+
+
+    <label for="idioma">Selecciona un idioma:</label>
+        <select id="idioma" onchange="cambiarIdioma()">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+        </select>
+        <div id="wrapper">
+        <form id="vehiculoForm">
+            <label for="imagen"><i class="fas fa-car"></i> Selecciona una imagen:</label>
+            <select id="imagen" onchange="habilitarCoberturas()">
+                <option value="Nissan Tiida :ecar.jpg">Tiida</option>
+                <option value="Nissan Versa :CCAR.jpg">Versa</option>
+                <option value="Ford Focus :ICAR.jpg">Focus</option>
+                <option value="Nissan Sentra :SCAR.jpg">Sentra</option>
+                <option value="Nissan Altima :FCAR.jpg">Altima</option>
+                <option value="Nissan Qashqai :EFAR.jpg">Qashqai</option>
+                <option value="Nissan Rogue :IFAR.jpg">Rogue</option>
+                <option value="Hyundai Santa Fe :SFAR.jpg">Santa Fe</option>
+                <option value="Chrysler Pacifica :MVAR.jpg">Pacifica</option>
+                <option value="Especial :XXAR.jpg">Especial</option>
+            </select>
+<br>
+<label for="cobertura"><i class="fas fa-shield-alt"></i> Selecciona cobertura:</label>
+            <div id="cobertura" class="radio-group">    
+                <container id="radiocobertura">      
+                    <input type="radio" id="declinatxt" name="cobertura" value="Declina">
+                    <label for="declinatxt" id="declinatxt">Declina</label>
+                    <input checked type="radio" id="basicatxt" name="cobertura" value="Basica">
+                    <label for="basicatxt" id="basicatxt">Basica</label>
+                    <input type="radio" id="totaltxt" name="cobertura" value="Total">
+                    <label for="totaltxt" id="totaltxt">Total</label>
+                </container>
+            </div>
+<br>
+<label for="precio"><i class="fas fa-dollar-sign"></i> Precio:</label>
+<input type="text" id="precio" placeholder="Ingresa el precio">
+<br>
+<label for="fechaRecoleccion"><i class="fas fa-calendar-alt"></i> Fecha de Recolección:</label>
+<input type="text" id="fechaRecoleccion" placeholder="Ej: 15 May 2024 10:00 AM">
+<br>
+<label for="fechaDevolucion"><i class="fas fa-calendar-alt"></i> Fecha de Devolución:</label>
+<input type="text" id="fechaDevolucion" placeholder="Ej: 20 May 2024 03:00 PM">
+<br>
+<label for="ubicacionRecoleccion"><i class="fas fa-map-marker-alt"></i> Ubicación de Recolección:</label>
+<input type="text" id="ubicacionRecoleccion" placeholder="Ingresa la ubicación de recolección">
+<br>
+<label for="ubicacionDevolucion"><i class="fas fa-map-marker-alt"></i> Ubicación de Devolución:</label>
+<input type="text" id="ubicacionDevolucion" placeholder="Ingresa la ubicación de devolución">
+<br>
+<label for="Quote"><i class="fas fa-file-invoice"></i> Número de Cotización:</label>
+<input type="text" id="Quote" placeholder="Ingresa el Número de Cotización">
+<br>
+<label for="texto"><span id="iconoTextoForm"><i class="fas fa-file-alt"></i></span> Texto adicional:</label>
+<input type="text" id="texto" placeholder="Ingresa un texto">                            
+            <br>
+            <button id="botonGen" type="button" onclick="generarImagen()">Generar Quote</button>
+            <br>
+            <button id="botonreset" type="button" onclick="limpiarFormulario()">Limpiar Formulario</button>
+            <br>
+            <button type="button" id="botonGuardar" onclick="guardarComoImagen()">Guardar Imagen</button>
+        </form>
+        <div class="plantillas">
+            <p id="pla-title">Plantillas</p>
+            <p id="blank"></p>
+            <button class="btn-green" id="wel1" data-text="¡Saludos! Soy William de Economy Rent a Car. Cuéntame, 
+¿Que vehículo,
+Que fecha & hora retiras  y devuelves,
+Donde deseas rentar?
+">Salu2</button>
+            <button class="btn-green" id="wel2" data-text="Greetings! William from Economy Rent a Car. Please tell me: 
+what vehicle type,
+ Pick-up & Drop-off dates and time,
+ And the location you would like to rent?
+">Greetins</button>
+            <button class="btn-orange" id="price1" data-text="¡Hola! Nuestros precios varían según el vehículo y las fechas. Para darte una cotización exacta, Para darte un monto necesito
+Nombre completo
+Vehículo de interés
+Lugar y fechas/horas de retiro y devolución.
+Requisitos básicos: 21+ años, licencia vigente, tarjeta de crédito (con pin, si te lo pide), y Licencia al día/pasaporte(Extranjero) o Cedula. ¡Gracias!
+">Variacion</button>
+            <button class="btn-orange" id="price2" data-text="Hi! Our prices vary by vehicle type and dates. To quote your vehicle, please send me:
+
+Your full name
+Vehicle type you're interested in
+Pick-up & drop-off locations/dates/times
+Basic requirements: 21+ years old, valid driver's license, credit card (some may require a PIN), and your passport (for foreigners) or local ID.
+Thanks!
+">Vary</button>
+            <button class="btn-yellow" id="mome1" data-text="Un momento, por favor">Momento</button>
+            <button class="btn-yellow" id="mome2" data-text="Bear with me a moment, please">Moment</button>
+            <button class="btn-lime" id="quo1" data-text="Para cotizar su vehículo, por favor envíame:
+
+Nombre completo
+Vehículo de interés
+Lugar y fechas/horas de retiro y devolución.
+Requisitos básicos: 21+ años, licencia vigente, tarjeta de crédito (con pin, si te lo pide), y Licencia al día/pasaporte(Extranjero) o Cedula.
+">Cotizacion</button>
+            <button class="btn-lime" id="quo2" data-text="To quote your vehicle, please send me:
+
+Your full name
+Vehicle type you're interested in
+Pick-up & drop-off locations/dates/times
+Basic requirements: 21+ years old, valid driver's license, credit card (some may require a PIN), and your passport (for foreigners) or local ID.
+">Quote</button>
+            <button class="btn-green" id="quo3" data-text="La cotización es válida 24 horas. Para proceder con tu reserva, envíanos una foto de tu licencia.">Coti R</button>
+            <button class="btn-green" id="quo4" data-text="Quote valid for 24 hours. Please send a photo of your driver's license to confirm your reservation.">Quote Ready</button>
+            <button class="btn-orange" id="clo1" data-text="Para servirte aún mejor, ¡tu opinión nos importa! Tómate un momento para nuestra encuesta: https://economyrentacarcx.qualtrics.com/jfe/form/SV_b7bT9zuLqXfYzBQ Gracias por preferirnos, ¡Economy Rent a Car, El Rent a Car de los ticos 🚗!">Despedida</button>
+            <button class="btn-orange" id="clo2" data-text="To serve you even better, your opinion is important to us! Please take a moment for our survey: https://economyrentacarcx.qualtrics.com/jfe/form/SV_b7bT9zuLqXfYzBQ Thanks for choosing Economy Rent a Car!">Closing</button>
+            <button class="btn-yellow" id="rep1" data-text="RA/Reserva: 
+
+Placa: 
+
+Nombre: 
+
+Numero: 
+
+Problema: 
+
+Solicitud: 
+">Reporte</button>
+            <button class="btn-yellow" id="rep2" data-text="RA/Booking: 
+
+License Plate: 
+
+Name: 
+
+Phone: 
+
+Issue: 
+
+Request:  
+">Report</button>
+        </div>
+    </div>
+<div id="resultado" class="resultado-container" style="display: none;"></div>
+<img id="floatingImage" src="us.png" alt="Floating Image">
+</body>
+</html>
