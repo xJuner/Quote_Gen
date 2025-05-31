@@ -103,7 +103,7 @@ function generarImagen() {
     resultadoDiv.innerHTML = `
         <div class="tarjeta">
             <div class="encabezado">
-                <img src="logo.png" alt="Logo">
+                <img src="logo2.png" alt="Logo">
                 ${idiomaSeleccionado === 'es' ? 'Vehículo - Clase' : 'Vehicle - Class'}
             </div>
             <div class="imagen">
