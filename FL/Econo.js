@@ -81,7 +81,7 @@ function generarImagen() {
     resultadoDiv.innerHTML = `
         <div class="tarjeta">
             <div class="encabezado">
-                <img src="logo.png" alt="Logo">
+                <img src="logo2.png" alt="Logo">
                 ${idiomaSeleccionado === 'es' ? 'Vehículo - Clase' : 'Vehicle - Class'}
             </div>
             <div class="imagen">
@@ -116,13 +116,11 @@ function generarImagen() {
 }
 
 function limpiarFormulario() {
-    // Mostrar un cuadro de confirmación
     const confirmacion = confirm("¿Estás seguro de que deseas limpiar el formulario?");
     
     if (confirmacion) {
-        document.getElementById("vehiculoForm").reset(); // Resetea todos los campos del formulario a sus valores iniciales
+        document.getElementById("vehiculoForm").reset(); 
 
-        // Opcional: Limpia el contenido del resultado y oculta el contenedor
         const resultadoDiv = document.getElementById("resultado");
         resultadoDiv.style.display = "none";
         resultadoDiv.innerHTML = '';
@@ -133,10 +131,9 @@ function guardarComoImagen() {
     const resultadoDiv = document.getElementById("resultado");
 
     html2canvas(resultadoDiv).then((canvas) => {
-        // Convierte el canvas en una imagen y la descarga
         const enlace = document.createElement('a');
         enlace.href = canvas.toDataURL('image/png');
-        enlace.download = 'cotizacion.png'; // Nombre del archivo
+        enlace.download = 'cotizacion.png'; 
         enlace.click();
     }).catch((error) => {
         console.error('Error al guardar la imagen:', error);
