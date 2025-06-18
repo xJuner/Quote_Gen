@@ -4,7 +4,6 @@
     margin-top: 20px;
     width: 100%;
     margin-top: 30vh;
-    padding-top: 300px;
 }
 
 .tarjeta {
@@ -104,13 +103,8 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0;
-    padding: 20px;
 }
 
-.container {
-    text-align: center;
-    margin-bottom: 20px;
-}
 
 label {
     display: block;
@@ -126,6 +120,7 @@ form {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
+    margin-bottom: 10%;
 }
 
 form input,
@@ -149,18 +144,18 @@ form select:focus {
 #cambiarCostaRica {
     position: flex;
     margin-top: 20px;
-    margin-bottom: 20px;
     background-color: hsl(0, 100%, 50%);
     color: white;
     border: none;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0.1rem;
     font-size: 1rem;
     border-radius: 4px;
     cursor: pointer;
-    width: 25%;
+    width: 15%;
     transition: background-color 0.3s ease;
     margin-right: 10px;
     margin-bottom: 10px;
+    display: none;
 }
 
 #cambiarafiliado {
@@ -236,6 +231,7 @@ form select:focus {
 
 #cambiarCostaRica:hover {
     background-color: #fb6262;
+    display: none;
 }
 
 
@@ -365,7 +361,7 @@ Copy.hidden-visibility {
     grid-template-columns: 1fr 1fr;
     gap: 1px 1px; 
     margin-top: 5vh;
-    margin-bottom: 10vh;
+    margin-bottom: 10vh;        
     width: 100%;
     align-content: center;
     row-gap: 1.5rem;
@@ -384,8 +380,7 @@ Copy.hidden-visibility {
     transition: all 0.3s ease;
     font-size: 12px;
     font-weight: bold;
-    width: 9vw;
-    height: 5vh;
+    width: 10vw;
 }
 
 .btn-green {
@@ -425,4 +420,74 @@ Copy.hidden-visibility {
     z-index: 1000; 
     border-radius: 5%; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+
+.navbar{
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: #cc0000;
+}
+
+.logonav {
+    flex-shrink: 0;
+}
+
+.imgnav {
+    width: 120px;
+    height: auto;
+    margin-right: 3rem;
+}
+
+.navl {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0 0.3rem 0 0;
+    padding: 0;
+    color: white;
+    text-decoration: none;
+   transition: all 0.3s;
+}
+
+.navl a {
+    text-decoration: none;
+    color: white;
+}
+
+.navl a:hover::after {
+  content: "< Cambiar a Florida";
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.qtext {
+    margin-left: 0px;
+    display: flex;
+    flex: start;
+    margin-right: 45vw;
+}
+
+.toflo {
+    width: 10%;
+    vertical-align: sub;
+}
+
+.fyah, .trash, .imgd {
+    width: 8%;
+    vertical-align: sub;
+}
+
+.clipb {
+    width: 15%;
+    vertical-align: -0.5em;
+}
+
+.idio {
+    margin-top: 1em;
 }
