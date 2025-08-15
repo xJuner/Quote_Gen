@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="scripts.js"></script>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oxanium:wght@200..800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oxanium:wght@200..800&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+            rel="stylesheet"
+        />
+        <title>Quote Gen 3</title>
+    </head>
+    <body>
+        <!--Titulo-->
+        <nav>
+            <p>Quote Generator V3</p>
+        </nav>
+        <!--Contenedor Principal-->
+        <div class="main-container">
+            <div class="row1">
+                <div class="box1">
+                    <div id="wrapper">
+                        <h2>Cotizador</h2>
+                        <div class="form-row">
+                            <select id="idioma" class="form-select" onchange="cambiarIdioma()">
+                                <option value="es">Español</option>
+                                <option value="en">English</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="loc-switch">
+                                <p class="ubip"><i class="fas fa-globe"></i> Selecciona la Ubicación</p>
+                            </label>
+                            <div id="loc-switch" class="radio-group">
+                                <input checked type="radio" id="loc-cr" name="ubicacion" data-target="vehiculoForm" />
+                                <label for="loc-cr">Costa Rica</label>
+                                <input type="radio" id="loc-fl" name="ubicacion" data-target="electForm" />
+                                <label for="loc-fl">Florida</label>
+                            </div>
+                        </div>
+                        <form id="vehiculoForm" class="form-container">
+                            <div class="form-row">
+                                <label for="imagen"><i class="fas fa-car"></i> Selecciona un vehiculo: </label>
+                                <select id="imagen" onchange="habilitarCoberturas()">
+                                    <option value="Accent:car3.jpg">Accent</option>
+                                    <option value="Elantra:car2.jpg">Elantra</option>
+                                    <option value="Kona:car6.jpg">Kona</option>
+                                    <option value="Rav4:car7.jpg">Rav4</option>
+                                    <option value="Tucson:car1.jpg">Tucson</option>
+                                    <option value="Santa Fe:car4.jpg">Santa Fe</option>
+                                    <option value="Staria:car5.jpg">Staria</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <label for="cobertura"><i class="fas fa-shield-alt"></i> Selecciona cobertura: </label>
+                                <div id="cobertura" class="radio-group">
+                                    <input type="radio" id="declinatxt" name="cobertura" value="Declina" />
+                                    <label for="declinatxt">Declina</label>
+                                    <input checked type="radio" id="basicatxt" name="cobertura" value="Basica" />
+                                    <label for="basicatxt">Basica</label>
+                                    <input type="radio" id="totaltxt" name="cobertura" value="Total" />
+                                    <label for="totaltxt">Total</label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <label for="precio"><i class="fas fa-dollar-sign"></i> Precio:</label>
+                                <input type="number" id="precio" placeholder="Ingresa el precio Ej: 1,337" />
+                            </div>
+                            <div class="form-row">
+                                <label for="fechaRecoleccion"><i class="fas fa-calendar-alt"></i> Fecha de Recolección:</label>
+                                <input type="date" id="fechaRecoleccion" placeholder="Ej: 15 May 2024 10:00 AM" />
+                                <input type="time" id="horaRecoleccion" step="1800">
+                            </div>
+                            <div class="form-row">
+                                <label for="fechaDevolucion"><i class="fas fa-calendar-alt"></i> Fecha de Devolución:</label>
+                                <input type="date" id="fechaDevolucion" placeholder="Ej: 20 May 2024 03:00 PM" />
+                                <input type="time" id="horaDevolucion" step="1800">
+                            </div>
+                            <div class="form-row">
+                                <label for="ubicacionRecoleccion"><i class="fas fa-map-marker-alt"></i> Ubicación de Recolección:</label>
+                                <input type="text" id="ubicacionRecoleccion" placeholder="Ingresa la ubicación de recolección" />
+                            </div>
+                            <div class="form-row">
+                                <label for="ubicacionDevolucion"><i class="fas fa-map-marker-alt"></i> Ubicación de Devolución:</label>
+                                <input type="text" id="ubicacionDevolucion" placeholder="Ingresa la ubicación de devolución" />
+                            </div>
+                            <div class="form-row">
+                                <label for="quote"><i class="fas fa-file-invoice"></i> Número de Cotización:</label>
+                                <input type="text" id="Quote" placeholder="Ingresa el Número de Cotización" />
+                            </div>
+                            <div class="form-row">
+                                <label for="texto">
+                                    <span id="iconoTextoForm"><i class="fas fa-file-alt"></i></span> Texto adicional:
+                                </label>
+                                <input type="text" id="texto" placeholder="Ingresa un texto" />
+                            </div>
+
+                            <div class="button-container">
+                                <button id="botonreset" type="button" onclick="limpiarFormulario()">Limpiar Formulario</button>
+                                <button id="botonGen" type="button" onclick="generarImagen()">Generar Quote</button>
+                                <button type="button" id="botonGuardar" onclick="guardarComoImagen()">Guardar Imagen</button>
+                            </div>
+                        </form>
+
+                        <form id="electForm" class="form-container">
+                            <form id="electForm" class="form-container">
+    <div class="form-row">
+        <label for="imagen2"><i class="fas fa-car"></i> Selecciona un vehiculo: </label>
+        <select id="imagen2" onchange="habilitarCoberturas()">
+            <option value="Nissan Tiida :ecar.jpg">Tiida</option>
+            <option value="Nissan Versa :CCAR.jpg">Versa</option>
+            <option value="Ford Focus :ICAR.jpg">Focus</option>
+            <option value="Nissan Sentra :SCAR.jpg">Sentra</option>
+            <option value="Nissan Altima :FCAR.jpg">Altima</option>
+            <option value="Nissan Qashqai :EFAR.jpg">Qashqai</option>
+            <option value="Nissan Rogue :IFAR.jpg">Rogue</option>
+            <option value="Hyundai Santa Fe :SFAR.jpg">Santa Fe</option>
+            <option value="Chrysler Pacifica :MVAR.jpg">Pacifica</option>
+            <option value="Especial :XXAR.jpg">Especial</option>
+        </select>
+    </div>
+    <div class="form-row">
+    <label for="cobertura2"><i class="fas fa-shield-alt"></i> Selecciona cobertura: </label>
+    <div id="cobertura2" class="radio-group">
+        <container id="radiocobertura2">
+            <input type="radio" id="declinatxt2" name="cobertura2" value="Declina" />
+            <label for="declinatxt2" id="declinatxt2">Declina</label>
+            <input checked type="radio" id="basicatxt2" name="cobertura2" value="Basica" />
+            <label for="basicatxt2" id="basicatxt2">Basica</label>
+            <input type="radio" id="totaltxt2" name="cobertura2" value="Total" />
+            <label for="totaltxt2" id="totaltxt2">Total</label>
+        </container>
+    </div>
+</div>
+    <div class="form-row">
+        <label for="precio2"><i class="fas fa-dollar-sign"></i> Precio:</label>
+        <input type="number" id="precio2" placeholder="Ingresa el precio Ej: 1,337" />
+    </div>
+    <div class="form-row">
+        <label for="fechaRecoleccion2"><i class="fas fa-calendar-alt"></i> Fecha de Recolección:</label>
+        <input type="date" id="fechaRecoleccion2" placeholder="Ej: 15 May 2024 10:00 AM" />
+        <input type="time" id="horaRecoleccion2" step="1800">
+    </div>
+    <div class="form-row">
+        <label for="fechaDevolucion2"><i class="fas fa-calendar-alt"></i> Fecha de Devolución:</label>
+        <input type="date" id="fechaDevolucion2" placeholder="Ej: 20 May 2024 03:00 PM" />
+        <input type="time" id="horaDevolucion2" step="1800">
+    </div>
+    <div class="form-row">
+        <label for="ubicacionRecoleccion2"><i class="fas fa-map-marker-alt"></i> Ubicación de Recolección:</label>
+        <input type="text" id="ubicacionRecoleccion2" placeholder="Ingresa la ubicación de recolección" />
+    </div>
+    <div class="form-row">
+        <label for="ubicacionDevolucion2"><i class="fas fa-map-marker-alt"></i> Ubicación de Devolución:</label>
+        <input type="text" id="ubicacionDevolucion2" placeholder="Ingresa la ubicación de devolución" />
+    </div>
+    <div class="form-row">
+        <label for="Quote2"><i class="fas fa-file-invoice"></i> Número de Cotización:</label>
+        <input type="text" id="Quote2" placeholder="Ingresa el Número de Cotización" />
+    </div>
+    <div class="form-row">
+        <label for="texto2">
+            <span id="iconoTextoForm2"><i class="fas fa-file-alt"></i></span> Texto adicional:
+        </label>
+        <input type="text" id="texto2" placeholder="Ingresa un texto" />
+    </div>
+    <div class="button-container">
+        <button id="botonreset2" type="button" onclick="limpiarFormulario()">Limpiar Formulario</button>
+        <button id="botonGen2" type="button" onclick="generarImagen()">Generar Quote</button>
+        <button type="button" id="botonGuardar2" onclick="guardarComoImagen()">Guardar Imagen</button>
+    </div>
+</form>
+                    </div>
+                </div>
+                <!--Segunda Caja-->
+                <div class="box2">
+                    <!--Botonera Plantillas-->
+                    <div class="plantillas">
+                        <h2>Plantillas</h2>
+                        <p id="blank"></p>
+                      <button class="btn-green" id="wel1" data-text="This is a button text 1">
+    Saludo
+</button>
+<button class="btn-green" id="wel2" data-text="This is a button text 2">
+    Greeting
+</button>
+<button class="btn-orange" id="price1" data-text="This is a button text 3">
+    Variacion
+</button>
+<button class="btn-orange" id="price2" data-text="This is a button text 4">
+    Variation
+</button>
+<button class="btn-yellow" id="mome1" data-text="This is a button text 5">Momento</button>
+<button class="btn-yellow" id="mome2" data-text="This is a button text 6">Moment</button>
+<button class="btn-lightpurple" id="quo1" data-text="This is a button text 7">
+    Cotizacion
+</button>
+<button class="btn-lightpurple" id="quo2" data-text="This is a button text 8">
+    Quotation
+</button>
+<button class="btn-green" id="quo3" data-text="This is a button text 9">Coti R</button>
+<button class="btn-green" id="quo4" data-text="This is a button text 10">Quote Ready</button>
+<button class="btn-orange" id="clo1" data-text="This is a button text 11">
+    Despedida
+</button>
+<button class="btn-orange" id="clo2" data-text="This is a button text 12">
+    Closing
+</button>
+<button class="btn-yellow" id="rep1" data-text="This is a button text 13">
+    Reporte
+</button>
+<button class="btn-yellow" id="rep2" data-text="This is a button text 14">
+    Report
+</button>
+<button class="btn-cyan" id="ina1" data-text="This is a button text 15">Inactivo</button>
+<button class="btn-cyan" id="ina2" data-text="This is a button text 16">Inactive</button>
+ </div>
+                </div>
+                <div class="box3">
+                    <h2>Notas</h2>
+                    <textarea class="notas" placeholder="..." cols="30" rows="20"></textarea>
+                </div>
+            </div>
+
+            <!--Segunda Fila-->
+            <div>
+                <div class="box4">
+                    <div id="resultado" class="resultado-container" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // Selecciona todos los radio buttons con el nombre 'ubicacion'
+                const locButtons = document.querySelectorAll('input[name="ubicacion"]');
+                // Selecciona todos los contenedores de formularios
+                const formContainers = document.querySelectorAll(".form-container");
+
+                // Función para mostrar solo el formulario correcto
+                const showForm = (formId) => {
+                    // Oculta todos los formularios
+                    formContainers.forEach((form) => {
+                        form.style.display = "none";
+                    });
+
+                    // Muestra el formulario que coincide con el ID
+                    const targetForm = document.getElementById(formId);
+                    if (targetForm) {
+                        targetForm.style.display = "block";
+                    }
+                };
+
+                // Agrega un escuchador de eventos a cada botón
+                locButtons.forEach((button) => {
+                    button.addEventListener("change", (event) => {
+                        const targetId = event.target.getAttribute("data-target");
+                        showForm(targetId);
+                    });
+                });
+
+                // Muestra el formulario inicial al cargar la página
+                const initialChecked = document.querySelector('input[name="ubicacion"]:checked');
+                if (initialChecked) {
+                    showForm(initialChecked.getAttribute("data-target"));
+                }
+            });
+        </script>
+    </body>
+</html>
